@@ -20,7 +20,7 @@ def on_message(client, userdata, msg): # Func for Sending msg
  if (float(msg.payload) < 37): 
          print("Low")
          ser.write(b"Low\n")
- if (float(msg.payload) ): 
+ if (float(msg.payload) == 0 ): 
          print("No Value")
          ser.write(b"No Value\n")
          
