@@ -27,11 +27,11 @@ client.loop_start()
 
 # reading and writing data from and to arduino serially.
 # rfcomm0 -> this could be different
-ser = serial.Serial("/dev/rfcomm0", 9600)
-ser.write(str.encode('Start\r\n'))
+ser1 = serial.Serial("/dev/rfcomm0", 9600)
+ser1.write(str.encode('Start\r\n'))
 while True:
- if ser.in_waiting > 0:
-     rawserial = ser.readline()
+ if ser1.in_waiting > 0:
+     rawserial = ser1.readline()
      cookedserial = rawserial.decode('utf-8').strip('\r\n')
      #print(cookedserial)
      #splitting
@@ -42,7 +42,7 @@ while True:
      
      publish.single("temp",tempValue, hostname="localhost")
      print("Done")
-     ser.write(b"temp\n")
+     ser1.write(b"temp\n")
      sensor_data['tempValue'] = tempValue
      # Sending humidity and temperature data to ThingsBoard
      client. publish('v1/devices/me/telemetry', json.dumps(sensor_data), 1)
